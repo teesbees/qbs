@@ -1,5 +1,6 @@
-// This script controls the mechanics behind a "top trumps"-style game.
+// This script controls the mechanics behind the game.
 // Developed by the data journalism team of the Hessischer Rundfunk in 2018
+// Adpated by Torsten Heycke
 
 /*  Copyright (C) 2018  Till Hafermann, Miguel Pascual Sanina, hr-Datenteam
 
@@ -17,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// CUSTOMIZATION: To build your own game, change the text to display
+// CUSTOMIZATION:
 
 // dropdown for choosing a card
 var chooseCardMsg = "(Choose card)";
@@ -39,11 +40,11 @@ var gameOverMsg = "Game over";
 var gameWaitMsg = "Start new game?";
 
 
-// Game is configured for seven rounds and five categories per card.
+// Game is configured for 10 rounds and five categories per card.
 // Change this here. Progress bar percentage should be 100/number of Rounds.
 
 var numberOfRounds = 10;
-var numberOfCategories = 5;
+var numberOfCategories = 6;
 var progressBarPercentage = "width: 14.29%";
 var currentRound = 1;
 
@@ -53,14 +54,14 @@ var currentRound = 1;
 
 // Data header: Names of the categories, first one = title of the card
 var data_header = ["Playername", "TDs", "INTs", "QBR", "SACKS",
-				   "YDS", "COMP"];
+				   "YDS", "COMP %"];
 
 // Category names for summary
 var summary_header = ["", "TDS", "INTS", "QBR", "SACKS",
 "YDS", "COMP"];
 
 // Units if necessary, first entry always empty
-var data_suffix = ["", "", "", " rating", "", " total yards"," %"];
+var data_suffix = ["", "", "", " ", "", " total yards",""];
 
 // Specify which number wins: larger or smaller, first entry always empty
 var data_comparison = ["", "larger", "smaller", "larger", "smaller", "larger", "larger"];
@@ -398,7 +399,7 @@ function getMode() {
 
 function getCategories() {
   // function to let user select, which categories to play with:
-  // either with five random categories
+  // either with five random categories (currently)
   // or with five fixed categories
 
   var categoriesList = document.getElementById("chosenCategoriesList");
